@@ -1,6 +1,6 @@
 # FractalTest1
 
-Mandelbrot set visualizer written in C#, currently single-threaded.
+Mandelbrot set visualizer written in C# and WinForms, currently single-threaded.
 
 It still starts to lose detail after you zoom in too far
 
