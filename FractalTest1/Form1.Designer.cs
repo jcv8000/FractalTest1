@@ -36,6 +36,8 @@ namespace FractalTest1
             this.moveDownBtn = new System.Windows.Forms.Button();
             this.moveLeftBtn = new System.Windows.Forms.Button();
             this.moveRightBtn = new System.Windows.Forms.Button();
+            this.mandelbrotBtn = new System.Windows.Forms.Button();
+            this.burningShipBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,11 +110,33 @@ namespace FractalTest1
             this.moveRightBtn.UseVisualStyleBackColor = true;
             this.moveRightBtn.Click += new System.EventHandler(this.moveRightBtn_Click);
             // 
+            // mandelbrotBtn
+            // 
+            this.mandelbrotBtn.Location = new System.Drawing.Point(739, 707);
+            this.mandelbrotBtn.Name = "mandelbrotBtn";
+            this.mandelbrotBtn.Size = new System.Drawing.Size(80, 23);
+            this.mandelbrotBtn.TabIndex = 7;
+            this.mandelbrotBtn.Text = "Mandelbrot";
+            this.mandelbrotBtn.UseVisualStyleBackColor = true;
+            this.mandelbrotBtn.Click += new System.EventHandler(this.mandelbrotBtn_Click);
+            // 
+            // burningShipBtn
+            // 
+            this.burningShipBtn.Location = new System.Drawing.Point(739, 678);
+            this.burningShipBtn.Name = "burningShipBtn";
+            this.burningShipBtn.Size = new System.Drawing.Size(80, 23);
+            this.burningShipBtn.TabIndex = 8;
+            this.burningShipBtn.Text = "Ship";
+            this.burningShipBtn.UseVisualStyleBackColor = true;
+            this.burningShipBtn.Click += new System.EventHandler(this.burningShipBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(831, 742);
+            this.Controls.Add(this.burningShipBtn);
+            this.Controls.Add(this.mandelbrotBtn);
             this.Controls.Add(this.moveRightBtn);
             this.Controls.Add(this.moveLeftBtn);
             this.Controls.Add(this.moveDownBtn);
@@ -140,6 +164,8 @@ namespace FractalTest1
         private System.Windows.Forms.Button moveDownBtn;
         private System.Windows.Forms.Button moveLeftBtn;
         private System.Windows.Forms.Button moveRightBtn;
+        private System.Windows.Forms.Button mandelbrotBtn;
+        private System.Windows.Forms.Button burningShipBtn;
     }
 }
 
