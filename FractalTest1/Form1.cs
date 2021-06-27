@@ -16,7 +16,7 @@ namespace FractalTest1
         {
             InitializeComponent();
 
-            fractal = new BurningShipFractal(WIDTH, HEIGHT);
+            fractal = new CustomFractal1(WIDTH, HEIGHT);
             pictureBox1.Image = fractal.Render();
         }
 
