@@ -11,19 +11,21 @@ namespace FractalTest1
     class BurningShipFractal : Fractal
     {
 
-        Bitmap img;
+        DirectBitmap img;
 
         public BurningShipFractal(int width, int height)
         {
             WIDTH = width;
             HEIGHT = height;
 
-            img = new Bitmap(WIDTH, HEIGHT);
+            flippedY = true;
 
-            defaultLowerX = -3.0;
-            defaultLowerY = -3.0;
-            defaultUpperX = 3.0;
-            defaultUpperY = 3.0;
+            img = new DirectBitmap(WIDTH, HEIGHT);
+
+            defaultLowerX = -3;
+            defaultLowerY = -3;
+            defaultUpperX = 3;
+            defaultUpperY = 3;
 
             lowerX = defaultLowerX;
             lowerY = defaultLowerY;
@@ -36,7 +38,9 @@ namespace FractalTest1
             const int ITERATIONS = 100;
             const double BREAKPOINT = 2.0;
 
-            for (int px = 0; px < WIDTH; px++)
+            Color[,] pixels = new Color[WIDTH, HEIGHT];
+
+            Parallel.For(0, WIDTH, px =>
             {
                 // Scaled
                 double x = lowerX + (((double)px / WIDTH) * (upperX - lowerX));
@@ -68,17 +72,42 @@ namespace FractalTest1
                     color = Color.Black;
                     if (i >= 0 && i < ITERATIONS)
                     {
-                        //int r, g, b;
-                        //HsvToRgb(((double)i / ITERATIONS) * 360, 1, 1, out r, out g, out b);
                         int brightness = 255 - (int)(((double)i / ITERATIONS) * 255);
                         color = Color.FromArgb(brightness, brightness, brightness);
                     }
 
-                    img.SetPixel(px, py, color);
+                    pixels[px, py] = color;
+                }
+            });
+
+            for (int x = 0; x < WIDTH; x++)
+            {
+                for (int y = 0; y < HEIGHT; y++)
+                {
+                    img.SetPixel(x, y, pixels[x, y]);
                 }
             }
 
-            return img;
+            return img.Bitmap;
+        }
+
+        // x - a number, from which we need to calculate the square root
+        // epsilon - an accuracy of calculation of the root from our number.
+        // The result of the calculations will differ from an actual value
+        // of the root on less than epslion.
+        public decimal Sqrt(decimal x, decimal epsilon = 0.0M)
+        {
+            if (x < 0) throw new OverflowException("Cannot calculate square root from a negative number");
+
+            decimal current = (decimal)Math.Sqrt((double)x), previous;
+            do
+            {
+                previous = current;
+                if (previous == 0.0M) return 0;
+                current = (previous + x / previous) / 2;
+            }
+            while (Math.Abs(previous - current) > epsilon);
+            return current;
         }
     }
 }

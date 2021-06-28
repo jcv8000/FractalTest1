@@ -12,6 +12,8 @@ namespace FractalTest1
     {
         public int WIDTH, HEIGHT;
 
+        public bool flippedY = false;
+
         protected double defaultLowerX, defaultUpperX, defaultLowerY, defaultUpperY;
 
         public double lowerX, upperX, lowerY, upperY;

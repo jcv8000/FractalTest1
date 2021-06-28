@@ -48,6 +48,7 @@ namespace FractalTest1
             this.pictureBox1.Size = new System.Drawing.Size(720, 720);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // zoomInBtn
             // 
@@ -134,7 +135,7 @@ namespace FractalTest1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(831, 742);
+            this.ClientSize = new System.Drawing.Size(827, 742);
             this.Controls.Add(this.burningShipBtn);
             this.Controls.Add(this.mandelbrotBtn);
             this.Controls.Add(this.moveRightBtn);

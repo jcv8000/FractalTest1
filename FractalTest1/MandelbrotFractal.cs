@@ -10,14 +10,15 @@ namespace FractalTest1
 {
     public class MandelbrotFractal : Fractal
     {
-        Bitmap img;
+
+        DirectBitmap img;
 
         public MandelbrotFractal(int width, int height)
         {
             WIDTH = width;
             HEIGHT = height;
 
-            img = new Bitmap(WIDTH, HEIGHT);
+            img = new DirectBitmap(WIDTH, HEIGHT);
 
             defaultLowerX = -3.0;
             defaultLowerY = -3.0;
@@ -35,7 +36,9 @@ namespace FractalTest1
             const int ITERATIONS = 100;
             const double BREAKPOINT = 2.0;
 
-            for (int px = 0; px < WIDTH; px++)
+            Color[,] pixels = new Color[WIDTH,HEIGHT];
+
+            Parallel.For(0, WIDTH, px =>
             {
                 // Scaled
                 double x = lowerX + (((double)px / WIDTH) * (upperX - lowerX));
@@ -72,11 +75,19 @@ namespace FractalTest1
                         color = Color.FromArgb(r, g, b);
                     }
 
-                    img.SetPixel(px, py, color);
+                    pixels[px,py] = color;
+                }
+            });
+
+            for (int x = 0; x < WIDTH; x++)
+            {
+                for (int y = 0; y < HEIGHT; y++)
+                {
+                    img.SetPixel(x, y, pixels[x, y]);
                 }
             }
 
-            return img;
+            return img.Bitmap;
         }
 
         /// <summary>
